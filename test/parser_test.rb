@@ -1,11 +1,11 @@
 
-require "pd-ruby/parser.rb"
+require 'test_helper'
 require "test/unit"
  
-class TestParser < Test::Unit::TestCase
+class ParserTest < Minitest::Test
  
   def test_parse_nominal
-  	patch = Pd::Patch.open("test/full.pd")
+  	patch = Rpd::Patch.open("test/full.pd")
     assert_equal(12, patch.atoms.size)
 
     atom = patch.atoms[4]
@@ -32,14 +32,14 @@ class TestParser < Test::Unit::TestCase
   end
 
   def test_normalize_nominal
-  	patch = Pd::Patch.open("test/full.pd")
+  	patch = Rpd::Patch.open("test/full.pd")
 
   	atom = patch.atoms[11]
 
   	assert_equal("1", atom.type)
   	assert_equal([], atom.parameters)
 
-  	Pd::Patch.normalize(patch)
+  	Rpd::Patch.normalize(patch)
 
 
   	assert_equal("f", atom.type)

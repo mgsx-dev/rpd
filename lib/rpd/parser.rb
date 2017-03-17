@@ -5,7 +5,7 @@ class String
   end
 end
 
-module Pd
+module Rpd
 
 	require 'ostruct'
 
