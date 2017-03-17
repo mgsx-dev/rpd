@@ -1,0 +1,31 @@
+#N canvas 808 223 875 471 10;
+#X obj 87 49 attribute vec4 a_position;
+#X obj 69 19 uniform mat4 u_projModelView;
+#X obj 69 155 *;
+#X obj 69 177 vertex;
+#X obj 196 175 varying vec2 v_texCoords;
+#X obj 196 394 out;
+#X obj 196 221 unpack f f;
+#X obj 196 262 sin;
+#X obj 196 284 * 0.5;
+#X obj 196 306 + 0.5;
+#X obj 196 349 pack f f f f;
+#X obj 277 308 1;
+#X text 489 37 attribute vec4 a_position \; uniform mat4 u_projModelView
+\; varying vec2 v_texCoords \; void main() v_texCoords = a_position.xy
+\; gl_Position = u_projModelView * a_position \;;
+#X text 484 241 varying vec2 v_texCoords \; void main() float f = sin(v_texCoords.x)
+* 0.5 + 0.5 \; gl_FragColor = vec4(f \, f \, f \, 1.0) \;;
+#X connect 0 0 2 1;
+#X connect 0 0 4 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 4 0 6 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 9 0 10 1;
+#X connect 9 0 10 2;
+#X connect 10 0 5 0;
+#X connect 11 0 10 3;

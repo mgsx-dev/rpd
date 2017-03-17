@@ -1,0 +1,18 @@
+#N canvas 1263 205 539 357 10;
+#X msg 161 75 listen 2000;
+#X obj 161 45 loadbang;
+#X obj 161 97 netreceive;
+#X obj 161 145 t b a b;
+#X msg 207 170 set \, add;
+#X msg 121 281;
+#X obj 158 193 list prepend add2;
+#X obj 158 215 list trim;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;
+#X connect 2 0 3 0;
+#X connect 3 0 5 0;
+#X connect 3 1 6 0;
+#X connect 3 2 4 0;
+#X connect 4 0 5 0;
+#X connect 6 0 7 0;
+#X connect 7 0 5 0;
