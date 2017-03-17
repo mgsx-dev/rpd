@@ -1,0 +1,7 @@
+#N canvas 736 365 450 300 10;
+#N canvas 712 582 450 300 sub1 0;
+#X obj 113 62 abs-a;
+#N canvas 65 85 450 300 sub2 0;
+#X obj 104 52 abs-b;
+#X restore 210 67 pd sub2;
+#X restore 170 56 pd sub1;

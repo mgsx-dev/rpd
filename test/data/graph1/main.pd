@@ -1,0 +1,7 @@
+#N canvas 742 357 450 300 10;
+#X obj 62 69 moses;
+#X obj 63 114 missing;
+#N canvas 65 81 450 300 subpatch 0;
+#X restore 59 241 pd subpatch;
+#X obj 63 160 root-abs;
+#X obj 63 198 abs/sub-abs;

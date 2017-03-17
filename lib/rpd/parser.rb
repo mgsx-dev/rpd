@@ -10,13 +10,35 @@ module Rpd
 	require 'ostruct'
 
 	class Patch
-
-		def self.open(file)
-			parse(File.read(file))
+		@@vanilla_atoms = nil
+		def self.vanilla?(name)
+			@@vanilla_atoms = ['f', 'i'] + Patch.open("data/vanilla-0.47.1.pd").atoms.map{|a| a.name} unless @@vanilla_atoms
+			@@vanilla_atoms.include?(name)
 		end
 
-		def self.parse(content)
-			patch = Patch.new
+		attr_accessor :data
+		attr :file
+
+
+		def self.open(file)
+			parse(file)
+		end
+
+		def initialize(file)
+			@file = file
+		end
+
+		def name
+			File.basename(@file, '.pd')
+		end
+
+		def atoms
+			data.atoms
+		end
+
+		def self.parse(file)
+			patch = Patch.new(file)
+			content = File.read(file)
 			atoms = []
 			id = 0
 			content.split("\n").each do |line|
@@ -32,6 +54,7 @@ module Rpd
 						atom.y = args.shift.to_i
 						atom.type = args.shift.to_s
 						atom.parameters = args
+						atom.name = atom.type.is_number? ? 'f' : atom.type
 						atom.id = id
 						atom.inlets = []
 						atom.outlets = []
@@ -62,7 +85,8 @@ module Rpd
 				else end
 			end
 
-			OpenStruct.new({atoms: atoms.compact})
+			patch.data = OpenStruct.new({atoms: atoms.compact})
+			patch
 			# dereference mixed types
 			#patch.atoms.each do |atom|
 			#	atom and atom.checkType
