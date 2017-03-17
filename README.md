@@ -24,8 +24,7 @@ Or install it yourself as:
 
 TODO: Write usage instructions here
 
-* Interactive PD via TPC : `bin/ipd.sh`
-* Interactive PD via FUDI : TODO
+* Interactive PD via TPC (FUDI) : `bin/ipd.sh`
 * Patch parser : TODO
 
 ## Development

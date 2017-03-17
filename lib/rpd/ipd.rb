@@ -2,27 +2,25 @@ require 'socket'
 
 module Rpd
 
-def server(&block)
-
-	hostname = 'localhost'
-	port = 2000
-
-	ts = TCPSocket.new(hostname, port)
-	
-	yield ts
-	
-	ts.close
-end
-
-def obj(x, y, *args)
-	server do |s|
-		s.puts "obj #{x} #{y} #{args.join(' ')}"
-	end
-end
-
-
 
 class Pd
+	def self.server(&block)
+
+		hostname = 'localhost'
+		port = 2000
+
+		ts = TCPSocket.new(hostname, port)
+		
+		yield ts
+		
+		ts.close
+	end
+
+	def self.obj(x, y, *args)
+		server do |s|
+			s.puts "obj #{x} #{y} #{args.join(' ')}"
+		end
+	end
 
 	def self.spawn
 		@@pid = Process.spawn('pd -send "pd-remote.pd vis 0" data/remote.pd')
