@@ -1,5 +1,6 @@
 require 'socket'
 
+module Rpd
 
 def server(&block)
 
@@ -24,7 +25,7 @@ end
 class Pd
 
 	def self.spawn
-		@@pid = Process.spawn('pd -send "pd-remote.pd vis 0" pd/remote.pd')
+		@@pid = Process.spawn('pd -send "pd-remote.pd vis 0" data/remote.pd')
 		["EXIT", "TERM", "ABRT"].each do |sig| Signal.trap(sig) { Pd.exit } end
 	end
 
@@ -124,7 +125,7 @@ class Pd
 
 end
 
-Pd.spawn
+
 
 class PdTuto
 
@@ -161,5 +162,7 @@ class PdTuto
 		end
 
 	end
+
+end
 
 end

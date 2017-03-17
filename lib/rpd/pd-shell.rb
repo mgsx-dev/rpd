@@ -1,3 +1,6 @@
+
+module Rpd
+
 require 'readline'
 require 'socket'      # Sockets are in standard library
 
@@ -37,4 +40,6 @@ server do |s|
 		cmds = line.split(" ")
 		p cmds
 	end
+end
+
 end
